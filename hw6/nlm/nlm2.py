@@ -86,7 +86,7 @@ if __name__ == "__main__":
         c, p = max(h.next_prob().items(), key=lambda x: x[1])
         print(c, "%.2f <- p(%s | ... %s)" % (p, c, " ".join(map(str, h.history[-4:]))))
         h += c
-'''
+
     # random generation
     h = NLM("s n o w _ w h i t e")
     t = 0.5
@@ -107,18 +107,18 @@ if __name__ == "__main__":
                 break
         print()
 '''
-     #entropy    
-p = 0
-l = 0
-import math, sys
-for line in sys.stdin:
-    line = line.strip().replace(" ", "_")
-    h = NLM()
-    for c in line:
-        p += -math.log(h.next_prob(c), 2)
-        h += c
-    p += -math.log(h.next_prob("</s>"), 2)
-    l += len(line) + 1
-print(p / l)
-'''
+    #entropy    
+    p = 0
+    l = 0
+    import math, sys
+    for line in sys.stdin:
+        line = line.strip().replace(" ", "_")
+        h = NLM()
+        for c in line:
+            p += -math.log(h.next_prob(c), 2)
+            h += c
+        p += -math.log(h.next_prob("</s>"), 2)
+        l += len(line) + 1
+    print(p / l)
+
     
