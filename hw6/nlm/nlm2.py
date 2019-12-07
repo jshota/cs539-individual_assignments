@@ -71,7 +71,7 @@ class NLM:
     
 if __name__ == "__main__":
     NLM.load('base')
-'''
+    '''
     # evaluate a string
     h = NLM()
     p = 1
@@ -106,7 +106,7 @@ if __name__ == "__main__":
                 h = NLM()
                 break
         print()
-'''
+    '''
     #entropy    
     p = 0
     l = 0
