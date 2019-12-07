@@ -108,17 +108,17 @@ if __name__ == "__main__":
         print()
     '''
     #entropy    
-p = 0
-l = 0
-import math, sys
-for line in sys.stdin:
-    line = line.strip().replace(" ", "_")
-    h = NLM()
-    for c in line:
-        p += -math.log(h.next_prob(c), 2)
-        h += c
-    p += -math.log(h.next_prob("</s>"), 2)
-    l += len(line) + 1
-print(p / l)
+    p = 0
+    l = 0
+    import math, sys
+    for line in sys.stdin:
+        line = line.strip().replace(" ", "_")
+        h = NLM()
+        for c in line:
+            p += -math.log(h.next_prob(c), 2)
+            h += c
+        p += -math.log(h.next_prob("</s>"), 2)
+        l += len(line) + 1
+    print(p / l)
 
     
