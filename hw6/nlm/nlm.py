@@ -62,10 +62,7 @@ class NLM:
         
     ___repr__ = __str__
     
-
-if __name__ == "__main__":
-    NLM.load('large')
-
+def evaluate_a_string():
     # evaluate a string
     h = NLM()
     p = 1
@@ -74,6 +71,7 @@ if __name__ == "__main__":
         p *= h.next_prob(c)
         h += c
 
+def greedy_generation():
     # greedy generation
     h = NLM()
     for i in range(100):
@@ -81,6 +79,7 @@ if __name__ == "__main__":
         print(c, "%.2f <- p(%s | ... %s)" % (p, c, " ".join(map(str, h.history[-4:]))))
         h += c
 
+def shannon_game():
     # shannon game
     text = "b  r  o  w  n  _  b  e  a  r  _  w  a  s  _  a  l  l  o  w  e  d  _  i  n  t  o  _  t  h  e  _  c  i  r  c  u  s  _  t  e  n  t  _  w  i  t  h  o  u  t  _  p  a  y  i  n  g  _  b  e  c  a  u  s  e  _ ".split()
     h = NLM()
@@ -95,3 +94,22 @@ if __name__ == "__main__":
     print(" ".join("%2s" % c for c in text))
     print(" ".join("%2d" % g for g in guesses))
 
+def entropy():
+    #entropy
+    p = 0
+    l = 0
+    import math, sys
+    for line in sys.stdin:
+    line = line.strip().replace(" ", "_")
+    h = NLM()
+    for c in line:
+        p += -math.log(h.next_prob(c), 2)
+        h += c
+    p += -math.log(h.next_prob("</s>"), 2)
+    l += len(line) + 1
+    print(p / l)
+
+if __name__ == "__main__":
+    NLM.load('large')
+
+    entropy()
