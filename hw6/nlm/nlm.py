@@ -70,7 +70,7 @@ class NLM:
     ___repr__ = __str__
     
 if __name__ == "__main__":
-    NLM.load('huge')
+    NLM.load('base')
     '''
     # evaluate a string
     h = NLM()
@@ -79,20 +79,20 @@ if __name__ == "__main__":
         print("%.3f" % p, h)
         p *= h.next_prob(c)
         h += c
-
+    
     # greedy generation
     h = NLM("d o n a l d _ t r u m p ")
     for _ in range(100):
         c, p = max(h.next_prob().items(), key=lambda x: x[1])
         print(c, "%.2f <- p(%s | ... %s)" % (p, c, " ".join(map(str, h.history[-4:]))))
         h += c
-
+    '''
     # random generation
-    h = NLM("h i l l a r y _ c l i n t o n")
+    h = NLM("t o m _ j e r r y")
     t = 0.5
     import random
     for _ in range(10):
-        h = NLM("h i l l a r y _ c l i n t o n")
+        h = NLM("t o m _ j e r r y")
         chars = list(h.next_prob().keys())
         while c != "</s>":
             probs = h.next_prob()
@@ -107,7 +107,7 @@ if __name__ == "__main__":
                 break
         print()
     '''
-    # entropy    
+    #entropy    
     p = 0
     l = 0
     import math, sys
@@ -120,5 +120,4 @@ if __name__ == "__main__":
         p += -math.log(h.next_prob("</s>"), 2)
         l += len(line) + 1
     print(p / l)
-
-    
+    '''
